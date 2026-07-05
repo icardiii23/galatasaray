@@ -12,17 +12,16 @@
             --glass: rgba(255, 255, 255, 0.05); --text-main: #ffffff; --text-dim: #a0a0a0;
         }
 
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: var(--bg-dark); color: var(--text-main); 
-            margin: 0; display: flex; height: 100vh; overflow: hidden;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-dark); color: var(--text-main); margin: 0; display: flex; height: 100vh; overflow: hidden; }
 
-        /* --- Masaüstü Düzeni --- */
         .sidebar { width: 360px; background: rgba(15, 15, 18, 0.95); border-right: 1px solid #222; display: flex; flex-direction: column; }
         .content { flex: 1; padding: 60px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1a1a1e 0%, #0a0a0c 100%); overflow-y: auto; }
 
-        /* --- Mobil (Duyarlı) Düzeni --- */
+        /* Sekmeler */
+        .top-nav { display: flex; border-bottom: 1px solid #222; }
+        .nav-btn { flex: 1; padding: 15px; border: none; background: #1a1a1e; color: #777; cursor: pointer; font-weight: 700; }
+        .nav-btn.active { background: #0a0a0c; color: var(--gs-gold); }
+
         @media (max-width: 768px) {
             body { flex-direction: column; overflow-y: auto; }
             .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #222; }
@@ -30,7 +29,7 @@
             .match-title { font-size: 1.6rem !important; }
         }
 
-        .brand { padding: 30px; font-size: 1.4rem; font-weight: 700; color: var(--gs-gold); text-align: center; }
+        .brand { padding: 20px; font-size: 1.4rem; font-weight: 700; color: var(--gs-gold); text-align: center; }
         .filter-grid { padding: 15px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
         .filter-btn { padding: 10px; border: none; border-radius: 8px; background: var(--glass); color: var(--text-dim); cursor: pointer; font-size: 0.75rem; font-weight: 500; transition: 0.3s; }
         .filter-btn.active { background: var(--gs-red); color: white; box-shadow: 0 4px 10px rgba(211,47,47,0.3); }
@@ -48,12 +47,16 @@
 
 <div class="sidebar">
     <div class="brand">GALATASARAY</div>
+    <div class="top-nav">
+        <button class="nav-btn active" id="btn-m" onclick="toggleView('match')">Maçlar</button>
+        <button class="nav-btn" id="btn-n" onclick="toggleView('news')">Haberler</button>
+    </div>
     <div class="filter-grid" id="filter-bar">
         <button class="filter-btn active" onclick="renderList('Hepsi', this)">Hepsi</button>
         <button class="filter-btn" onclick="renderList('Süper Lig', this)">Süper Lig</button>
         <button class="filter-btn" onclick="renderList('UCL', this)">UCL</button>
-        <button class="filter-btn" onclick="renderList('Hazırlık Maçları', this)">Hazırlık</button>
-        <button class="filter-btn" onclick="renderList('Türkiye Kupası', this)">T. Kupası</button>
+        <button class="filter-btn" onclick="renderList('Hazırlık Maçları', this)">Hazırlık Maçları</button>
+        <button class="filter-btn" onclick="renderList('Türkiye Kupası', this)">Türkiye Kupası</button>
         <button class="filter-btn" onclick="renderList('Süper Kupa', this)">Süper Kupa</button>
     </div>
     <div id="match-list" class="match-list"></div>
@@ -66,11 +69,26 @@
 </div>
 
 <script>
+    // MAÇLAR KISMI (Dokunulmadı)
     const matches = [
         { id: 1, lig: 'Hazırlık Maçları', rakip: 'AC Monza', skor: '', durum: '', tarih: '24.07.2026', saat: '21:00', stad: 'Raiffeisen Arena', goller: '-' },
         { id: 2, lig: 'Hazırlık Maçları', rakip: 'Venezia', skor: '', durum: '', tarih: '27.07.2026', saat: '21:00', stad: 'Hofmann Stadion', goller: '-' },
         { id: 3, lig: 'Hazırlık Maçları', rakip: 'Villarreal', skor: '', durum: '', tarih: '08.08.2026', saat: '21:00', stad: 'RAMS Park', goller: '-' },
     ];
+
+    // HABERLER KISMI (Yeni Eklendi)
+    const news = [
+        { id: 101, title: 'Test', content: 'Test' }
+    ];
+
+    function toggleView(type) {
+        document.getElementById('btn-m').className = type === 'match' ? 'nav-btn active' : 'nav-btn';
+        document.getElementById('btn-n').className = type === 'news' ? 'nav-btn active' : 'nav-btn';
+        document.getElementById('filter-bar').style.display = type === 'match' ? 'grid' : 'none';
+        
+        if(type === 'match') renderList('Hepsi');
+        else renderNews();
+    }
 
     function renderList(filter, btn) {
         if (btn) {
@@ -91,6 +109,14 @@
         `).join('');
     }
 
+    function renderNews() {
+        document.getElementById('match-list').innerHTML = news.map(n => `
+            <div class="match-card" onclick="showNewsDetail(${n.id})">
+                <div><div style="font-weight:600">${n.title}</div></div>
+            </div>
+        `).join('');
+    }
+
     function showDetail(id) {
         const m = matches.find(x => x.id === id);
         const title = m.skor ? `Galatasaray ${m.skor} ${m.rakip}` : `Galatasaray vs ${m.rakip}`;
@@ -105,6 +131,15 @@
             </div>
         `;
     }
+
+    function showNewsDetail(id) {
+        const n = news.find(x => x.id === id);
+        document.getElementById('detail-view').innerHTML = `
+            <div class="match-title">${n.title}</div>
+            <p style="color:var(--text-dim)">${n.content}</p>
+        `;
+    }
+    
     renderList('Hepsi');
 </script>
 </body>
