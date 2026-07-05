@@ -2,56 +2,46 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Galatasaray</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galatasaray Fikstür</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&display=swap');
         
         :root {
-            --gs-red: #d32f2f;
-            --gs-gold: #ffc107;
-            --bg-dark: #0a0a0c;
-            --glass: rgba(255, 255, 255, 0.03);
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
+            --gs-red: #d32f2f; --gs-gold: #ffc107; --bg-dark: #0a0a0c;
+            --glass: rgba(255, 255, 255, 0.05); --text-main: #ffffff; --text-dim: #a0a0a0;
         }
 
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: var(--bg-dark); 
-            color: var(--text-main); 
+            background: var(--bg-dark); color: var(--text-main); 
             margin: 0; display: flex; height: 100vh; overflow: hidden;
         }
 
-        .sidebar { 
-            width: 360px; background: rgba(15, 15, 18, 0.95); 
-            border-right: 1px solid rgba(255,255,255,0.1); 
-            display: flex; flex-direction: column; backdrop-filter: blur(10px);
-        }
-        
-        .brand { padding: 40px; font-size: 1.4rem; font-weight: 700; color: var(--gs-gold); border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        /* --- Masaüstü Düzeni --- */
+        .sidebar { width: 360px; background: rgba(15, 15, 18, 0.95); border-right: 1px solid #222; display: flex; flex-direction: column; }
+        .content { flex: 1; padding: 60px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1a1a1e 0%, #0a0a0c 100%); overflow-y: auto; }
 
-        .filter-grid { padding: 20px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .filter-btn { 
-            padding: 10px; border: none; border-radius: 8px; background: var(--glass); 
-            color: var(--text-dim); cursor: pointer; font-size: 0.75rem; font-weight: 500; transition: 0.4s;
+        /* --- Mobil (Duyarlı) Düzeni --- */
+        @media (max-width: 768px) {
+            body { flex-direction: column; overflow-y: auto; }
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #222; }
+            .content { padding: 20px; min-height: 400px; }
+            .match-title { font-size: 1.6rem !important; }
         }
-        .filter-btn.active { background: var(--gs-red); color: white; box-shadow: 0 4px 15px rgba(211,47,47,0.3); }
 
-        .match-list { flex: 1; overflow-y: auto; padding: 0 20px 20px 20px; }
-        .match-card { 
-            background: var(--glass); padding: 18px; border-radius: 12px; margin-bottom: 12px; 
-            cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid rgba(255,255,255,0.03);
-            transition: transform 0.2s, border 0.3s;
-        }
-        .match-card:hover { transform: translateY(-2px); border-color: var(--gs-gold); }
+        .brand { padding: 30px; font-size: 1.4rem; font-weight: 700; color: var(--gs-gold); text-align: center; }
+        .filter-grid { padding: 15px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .filter-btn { padding: 10px; border: none; border-radius: 8px; background: var(--glass); color: var(--text-dim); cursor: pointer; font-size: 0.75rem; font-weight: 500; transition: 0.3s; }
+        .filter-btn.active { background: var(--gs-red); color: white; box-shadow: 0 4px 10px rgba(211,47,47,0.3); }
 
-        .content { flex: 1; padding: 80px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1a1a1e 0%, #0a0a0c 100%); }
-        .detail-view { width: 100%; max-width: 600px; text-align: center; }
-        .match-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 30px; }
-        .stat-card { 
-            background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);
-            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
-        }
+        .match-list { flex: 1; overflow-y: auto; padding: 15px; }
+        .match-card { background: var(--glass); padding: 15px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; gap: 12px; border: 1px solid transparent; }
+        .match-card:hover { border-color: var(--gs-gold); }
+
+        .detail-view { width: 100%; max-width: 500px; text-align: center; }
+        .match-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 25px; }
+        .stat-card { background: var(--glass); padding: 25px; border-radius: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; text-align: left; }
     </style>
 </head>
 <body>
@@ -62,8 +52,8 @@
         <button class="filter-btn active" onclick="renderList('Hepsi', this)">Hepsi</button>
         <button class="filter-btn" onclick="renderList('Süper Lig', this)">Süper Lig</button>
         <button class="filter-btn" onclick="renderList('UCL', this)">UCL</button>
-        <button class="filter-btn" onclick="renderList('Hazırlık Maçları', this)">Hazırlık Maçları</button>
-        <button class="filter-btn" onclick="renderList('Türkiye Kupası', this)">Türkiye Kupası</button>
+        <button class="filter-btn" onclick="renderList('Hazırlık Maçları', this)">Hazırlık</button>
+        <button class="filter-btn" onclick="renderList('Türkiye Kupası', this)">T. Kupası</button>
         <button class="filter-btn" onclick="renderList('Süper Kupa', this)">Süper Kupa</button>
     </div>
     <div id="match-list" class="match-list"></div>
@@ -77,9 +67,9 @@
 
 <script>
     const matches = [
-        { id: 1, lig: 'Hazırlık Maçları', rakip: 'AC Monza', skor: '', durum: '', tarih: '24.07.2026', saat: '21:00', stad: 'Raiffeisen Arena', goller: ' ' },
- { id: 2, lig: 'Hazırlık Maçları', rakip: 'Venezia', skor: '', durum: '', tarih: '27.07.2026', saat: '21:00', stad: 'Hofmann Personal Stadion', goller: ' ' },
-    { id: 3, lig: 'Hazırlık Maçları', rakip: 'Villarreal', skor: '', durum: '', tarih: '08.08.2026', saat: '21:00', stad: 'RAMS Park', goller: ' ' },
+        { id: 1, lig: 'Hazırlık Maçları', rakip: 'AC Monza', skor: '', durum: '', tarih: '24.07.2026', saat: '21:00', stad: 'Raiffeisen Arena', goller: '-' },
+        { id: 2, lig: 'Hazırlık Maçları', rakip: 'Venezia', skor: '', durum: '', tarih: '27.07.2026', saat: '21:00', stad: 'Hofmann Stadion', goller: '-' },
+        { id: 3, lig: 'Hazırlık Maçları', rakip: 'Villarreal', skor: '', durum: '', tarih: '08.08.2026', saat: '21:00', stad: 'RAMS Park', goller: '-' },
     ];
 
     function renderList(filter, btn) {
@@ -92,10 +82,10 @@
         
         list.innerHTML = filtered.map(m => `
             <div class="match-card" onclick="showDetail(${m.id})">
-                <div style="width:8px; height:8px; border-radius:50%; background:${m.durum === 'W' ? '#22c55e' : m.durum === 'L' ? '#d32f2f' : m.durum === 'D' ? '#ffc107' : '#555'}"></div>
+                <div style="width:8px; height:8px; border-radius:50%; background:#555"></div>
                 <div>
                     <div style="font-size:0.7rem; color:var(--text-dim)">${m.tarih}</div>
-                    <div style="font-weight:600">${m.skor ? 'Galatasaray ' + m.skor + ' ' + m.rakip : 'Galatasaray vs ' + m.rakip}</div>
+                    <div style="font-weight:600">${m.skor ? 'GS ' + m.skor : 'GS vs'} ${m.rakip}</div>
                 </div>
             </div>
         `).join('');
@@ -104,9 +94,8 @@
     function showDetail(id) {
         const m = matches.find(x => x.id === id);
         const title = m.skor ? `Galatasaray ${m.skor} ${m.rakip}` : `Galatasaray vs ${m.rakip}`;
-        
         document.getElementById('detail-view').innerHTML = `
-            <div style="color:var(--gs-gold); text-transform:uppercase; font-size:0.8rem; margin-bottom:10px">${m.lig}</div>
+            <div style="color:var(--gs-gold); font-size:0.8rem; margin-bottom:10px">${m.lig}</div>
             <div class="match-title">${title}</div>
             <div class="stat-card">
                 <div><div style="color:var(--text-dim); font-size:0.7rem">Tarih</div>${m.tarih}</div>
