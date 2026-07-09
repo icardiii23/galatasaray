@@ -30,6 +30,11 @@
             .match-title { font-size: 1.2rem; }
             .stat-card { padding: 15px; gap: 10px; }
         }
+        @media (max-width: 768px) {
+    /* Liste gizlenecekse detay tam ekran olsun */
+    .sidebar.hidden { display: none; }
+    .content.full-screen { display: flex; width: 100%; height: 100%; }
+}
     </style>
 </head>
 <body>
@@ -139,6 +144,7 @@
     function showDetail(id) {
         const m = matches.find(x => x.id === id);
         document.getElementById('detail-view').innerHTML = `
+            <button onclick="goBack()" style="background:none; border:none; color:white; margin-bottom:20px; font-size:1rem;">← Geri Dön</button>
             <div class="match-title">${m.evSahibi ? 'Galatasaray - ' + m.rakip : m.rakip + ' - Galatasaray'}</div>
             <div class="stat-card">
                 <div><div style="color:#a0a0a0; font-size:0.7rem">Tarih</div>${m.tarih}</div>
@@ -146,16 +152,18 @@
                 <div><div style="color:#a0a0a0; font-size:0.7rem">Stadyum</div>${m.stad}</div>
                 <div><div style="color:#a0a0a0; font-size:0.7rem">Goller</div>${m.goller}</div>
             </div>`;
-
-    document.getElementById('detail-view').scrollIntoView({ behavior: 'smooth' });
+        
+        // Mobil için geçiş:
+        if (window.innerWidth <= 768) {
+            document.querySelector('.sidebar').classList.add('hidden');
+            document.querySelector('.content').classList.add('full-screen');
+        }
     }
 
-    function showNewsDetail(id) {
-        const n = news.find(x => x.id === id);
-        document.getElementById('detail-view').innerHTML = `
-            <div class="match-title">${n.title}</div>
-            <p style="color:#a0a0a0; font-size:1.1rem; line-height:1.6;">${n.content}</p>
-        `;
+    // Geri dönme fonksiyonu:
+    function goBack() {
+        document.querySelector('.sidebar').classList.remove('hidden');
+        document.querySelector('.content').classList.remove('full-screen');
     }
     
     renderList('Hepsi');
