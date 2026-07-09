@@ -23,19 +23,12 @@
         .stat-card { background: var(--glass); padding: 25px; border-radius: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; }
 
         /* TELEFON UYUMLULUĞU İÇİN EKLENEN KISIM */
-      @media (max-width: 768px) {
-    .sidebar.hidden { display: none !important; }
-    .content.full-screen { 
-        display: flex !important; 
-        width: 100% !important; 
-        height: 100vh !important; 
-        position: fixed; 
-        top: 0; 
-        left: 0; 
-        background: var(--bg-dark) !important;
-        padding: 40px 20px !important;
-        z-index: 100;
-    }
+   @media (max-width: 768px) {
+            body { flex-direction: column; overflow-y: auto; }
+            .sidebar { width: 100%; height: auto; border-right: none; }
+            .content { padding: 20px; }
+            .match-title { font-size: 1.2rem; }
+            .stat-card { padding: 15px; gap: 10px; }
 }
         @media (max-width: 768px) {
     /* Liste gizlenecekse detay tam ekran olsun */
