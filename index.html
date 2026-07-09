@@ -152,6 +152,22 @@
                 <div><div style="color:#a0a0a0; font-size:0.7rem">Stadyum</div>${m.stad}</div>
                 <div><div style="color:#a0a0a0; font-size:0.7rem">Goller</div>${m.goller}</div>
             </div>`;
+
+        function showNewsDetail(id) {
+        const n = news.find(x => x.id === id);
+        // Önce içeriği temizleyip haber detayını basıyoruz
+        document.getElementById('detail-view').innerHTML = `
+            <button onclick="goBack()" style="background:none; border:none; color:var(--gs-gold); margin-bottom:20px; font-size:1rem; cursor:pointer;">← Geri Dön</button>
+            <div class="match-title">${n.title}</div>
+            <p style="color:#ffffff; font-size:1.1rem; line-height:1.6; text-align:left;">${n.content}</p>
+        `;
+        
+        // Mobil için gizleme mantığı (Maçlarla aynı)
+        if (window.innerWidth <= 768) {
+            document.querySelector('.sidebar').classList.add('hidden');
+            document.querySelector('.content').classList.add('full-screen');
+        }
+    }
         
         // Mobil için geçiş:
         if (window.innerWidth <= 768) {
