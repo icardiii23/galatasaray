@@ -11,7 +11,8 @@
         .sidebar { width: 360px; background: rgba(15, 15, 18, 0.95); border-right: 1px solid #222; display: flex; flex-direction: column; }
         .content { flex: 1; padding: 60px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1a1a1e 0%, #0a0a0c 100%); overflow-y: auto; }
         .top-nav { display: flex; border-bottom: 1px solid #222; }
-        .nav-btn { flex: 1; padding: 15px; border: none; background: #1a1a1e; color: var(--gs-gold); cursor: default; font-weight: 700; }
+        .nav-btn { flex: 1; padding: 15px; border: none; background: #1a1a1e; color: #777; cursor: pointer; font-weight: 700; }
+        .nav-btn.active { background: #0a0a0c; color: var(--gs-gold); }
         .filter-grid { padding: 15px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
         .filter-btn { padding: 10px; border: none; border-radius: 8px; background: var(--glass); color: var(--text-dim); cursor: pointer; font-size: 0.75rem; }
         .filter-btn.active { background: var(--gs-red); color: white; }
@@ -22,18 +23,11 @@
         .stat-card { background: var(--glass); padding: 25px; border-radius: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; }
 
         @media (max-width: 768px) {
+            body { flex-direction: column; overflow-y: auto; }
+            .sidebar { width: 100% !important; height: auto !important; border-right: none !important; }
+            .content { padding: 20px !important; }
             .sidebar.hidden { display: none !important; }
-            .content.full-screen { 
-                display: flex !important; 
-                width: 100% !important; 
-                height: 100vh !important; 
-                position: fixed; 
-                top: 0; 
-                left: 0; 
-                background: var(--bg-dark) !important;
-                padding: 40px 20px !important;
-                z-index: 100;
-            }
+            .content.full-screen { display: flex !important; width: 100% !important; height: 100vh !important; position: fixed; top: 0; left: 0; background: var(--bg-dark) !important; padding: 40px 20px !important; z-index: 100; }
         }
     </style>
 </head>
@@ -42,7 +36,7 @@
 <div class="sidebar">
     <div style="padding: 20px; font-size: 1.4rem; font-weight: 700; color: var(--gs-gold); text-align: center;">GALATASARAY</div>
     <div class="top-nav">
-        <button class="nav-btn">Maçlar</button>
+        <button class="nav-btn active" id="btn-m">Maçlar</button>
     </div>
     <div class="filter-grid" id="filter-bar">
         <button class="filter-btn active" onclick="renderList('Hepsi', this)">Hepsi</button>
