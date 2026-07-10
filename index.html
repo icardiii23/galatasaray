@@ -52,43 +52,44 @@
 
 <script>
     const matches = [
-        { id: 1, lig: 'Hazırlık', rakip: 'AC Monza', evSahibi: true, tarih: '24.07.2026', stad: 'RAMS Park', goller: '-' },
-        { id: 2, lig: 'Hazırlık', rakip: 'Venezia', evSahibi: true, tarih: '27.07.2026', stad: 'RAMS Park', goller: '-' },
-        { id: 3, lig: 'Hazırlık', rakip: 'Villarreal', evSahibi: true, tarih: '08.08.2026', stad: 'RAMS Park', goller: '-' },
-        { id: 4, lig: 'Süper Lig', rakip: 'Çorum FK', evSahibi: true, tarih: '16.08.2026', stad: 'RAMS Park', goller: '-' },
-        { id: 5, lig: 'Süper Lig', rakip: 'Erzurumspor FK', evSahibi: false, tarih: '23.08.2026', stad: 'Kazım Karabekir Stadı', goller: '-' },
-        { id: 6, lig: 'Süper Lig', rakip: 'Göztepe', evSahibi: true, tarih: '30.08.2026', stad: 'RAMS Park', goller: '-' },
-        { id: 7, lig: 'Süper Lig', rakip: 'Başakşehir', evSahibi: false, tarih: '06.09.2026', stad: 'Başakşehir Fatih Terim Stadı', goller: '-' },
-        { id: 8, lig: 'Süper Lig', rakip: 'Kocaelispor', evSahibi: true, tarih: '13.09.2026', stad: 'RAMS Park', goller: '-' },
-        { id: 9, lig: 'Süper Lig', rakip: 'Trabzonspor', evSahibi: false, tarih: '20.09.2026', stad: 'Papara Park', goller: '-' },
-        { id: 10, lig: 'Süper Lig', rakip: 'Kasımpaşa', evSahibi: true, tarih: '11.10.2026', stad: 'RAMS Park', goller: '-' },
-        { id: 11, lig: 'Süper Lig', rakip: 'Gençlerbirliği', evSahibi: false, tarih: '18.10.2026', stad: 'Eryaman Stadı', goller: '-' },
-        { id: 12, lig: 'Süper Lig', rakip: 'Fenerbahçe', evSahibi: true, tarih: '25.10.2026', stad: 'RAMS Park', goller: '-' },
-        { id: 13, lig: 'Süper Lig', rakip: 'Konyaspor', evSahibi: false, tarih: '01.11.2026', stad: 'Konya Büyükşehir Belediye Stadı', goller: '-' },
-        { id: 14, lig: 'Süper Lig', rakip: 'Amed SK', evSahibi: true, tarih: '08.11.2026', stad: 'RAMS Park', goller: '-' },
-        { id: 15, lig: 'Süper Lig', rakip: 'Samsunspor', evSahibi: true, tarih: '22.11.2026', stad: 'RAMS Park', goller: '-' },
-        { id: 16, lig: 'Süper Lig', rakip: 'Beşiktaş', evSahibi: false, tarih: '29.11.2026', stad: 'Tüpraş Park', goller: '-' },
-        { id: 17, lig: 'Süper Lig', rakip: 'Çaykur Rizespor', evSahibi: true, tarih: '06.12.2026', stad: 'RAMS Park', goller: '-' },
-        { id: 18, lig: 'Süper Lig', rakip: 'Eyüpspor', evSahibi: false, tarih: '13.12.2026', stad: 'Eyüp Stadı', goller: '-' },
-        { id: 19, lig: 'Süper Lig', rakip: 'Alanyaspor', evSahibi: true, tarih: '20.12.2026', stad: 'RAMS Park', goller: '-' },
-        { id: 20, lig: 'Süper Lig', rakip: 'Gaziantep FK', evSahibi: false, tarih: '17.01.2027', stad: 'Gaziantep Büyükşehir Belediye Stadı', goller: '-' },
-        { id: 21, lig: 'Süper Lig', rakip: 'Çorum FK', evSahibi: false, tarih: '24.01.2027', stad: 'Çorum Şehir Stadı', goller: '-' },
-        { id: 22, lig: 'Süper Lig', rakip: 'Erzurumspor FK', evSahibi: true, tarih: '31.01.2027', stad: 'RAMS Park', goller: '-' },
-        { id: 23, lig: 'Süper Lig', rakip: 'Göztepe', evSahibi: false, tarih: '07.02.2027', stad: 'Gürsel Aksel Stadı', goller: '-' },
-        { id: 24, lig: 'Süper Lig', rakip: 'Başakşehir', evSahibi: true, tarih: '14.02.2027', stad: 'RAMS Park', goller: '-' },
-        { id: 25, lig: 'Süper Lig', rakip: 'Kocaelispor', evSahibi: false, tarih: '21.02.2027', stad: 'Kocaeli Stadı', goller: '-' },
-        { id: 26, lig: 'Süper Lig', rakip: 'Trabzonspor', evSahibi: true, tarih: '28.02.2027', stad: 'RAMS Park', goller: '-' },
-        { id: 27, lig: 'Süper Lig', rakip: 'Kasımpaşa', evSahibi: false, tarih: '07.03.2027', stad: 'Kasımpaşa Stadı', goller: '-' },
-        { id: 28, lig: 'Süper Lig', rakip: 'Gençlerbirliği', evSahibi: true, tarih: '14.03.2027', stad: 'RAMS Park', goller: '-' },
-        { id: 29, lig: 'Süper Lig', rakip: 'Fenerbahçe', evSahibi: false, tarih: '21.03.2027', stad: 'Chobani Stadyumu', goller: '-' },
-        { id: 30, lig: 'Süper Lig', rakip: 'Konyaspor', evSahibi: true, tarih: '04.04.2027', stad: 'RAMS Park', goller: '-' },
-        { id: 31, lig: 'Süper Lig', rakip: 'Amed SK', evSahibi: false, tarih: '11.04.2027', stad: 'Diyarbakır Stadı', goller: '-' },
-        { id: 32, lig: 'Süper Lig', rakip: 'Samsunspor', evSahibi: false, tarih: '18.04.2027', stad: 'Samsun 19 Mayıs Stadı', goller: '-' },
-        { id: 33, lig: 'Süper Lig', rakip: 'Beşiktaş', evSahibi: true, tarih: '25.04.2027', stad: 'RAMS Park', goller: '-' },
-        { id: 34, lig: 'Süper Lig', rakip: 'Çaykur Rizespor', evSahibi: false, tarih: '02.05.2027', stad: 'Çaykur Didi Stadı', goller: '-' },
-        { id: 35, lig: 'Süper Lig', rakip: 'Eyüpspor', evSahibi: true, tarih: '09.05.2027', stad: 'RAMS Park', goller: '-' },
-        { id: 36, lig: 'Süper Lig', rakip: 'Alanyaspor', evSahibi: false, tarih: '15.05.2027', stad: 'Alanya Oba Stadı', goller: '-' },
-        { id: 37, lig: 'Süper Lig', rakip: 'Gaziantep FK', evSahibi: true, tarih: '23.05.2027', stad: 'RAMS Park', goller: '-' }
+        { id: 1, lig: 'Hazırlık', rakip: 'Ümraniyespor', evSahibi: false, tarih: '17.07.2026', stad: 'Ümraniye Şehir Stadı', goller: '-' },
+        { id: 2, lig: 'Hazırlık', rakip: 'AC Monza', evSahibi: true, tarih: '24.07.2026', stad: 'RAMS Park', goller: '-' },
+        { id: 3, lig: 'Hazırlık', rakip: 'Venezia', evSahibi: true, tarih: '27.07.2026', stad: 'RAMS Park', goller: '-' },
+        { id: 4, lig: 'Hazırlık', rakip: 'Villarreal', evSahibi: true, tarih: '08.08.2026', stad: 'RAMS Park', goller: '-' },
+        { id: 5, lig: 'Süper Lig', rakip: 'Çorum FK', evSahibi: true, tarih: '16.08.2026', stad: 'RAMS Park', goller: '-' },
+        { id: 6, lig: 'Süper Lig', rakip: 'Erzurumspor FK', evSahibi: false, tarih: '23.08.2026', stad: 'Kazım Karabekir Stadı', goller: '-' },
+        { id: 7, lig: 'Süper Lig', rakip: 'Göztepe', evSahibi: true, tarih: '30.08.2026', stad: 'RAMS Park', goller: '-' },
+        { id: 8, lig: 'Süper Lig', rakip: 'Başakşehir', evSahibi: false, tarih: '06.09.2026', stad: 'Başakşehir Fatih Terim Stadı', goller: '-' },
+        { id: 9, lig: 'Süper Lig', rakip: 'Kocaelispor', evSahibi: true, tarih: '13.09.2026', stad: 'RAMS Park', goller: '-' },
+        { id: 10, lig: 'Süper Lig', rakip: 'Trabzonspor', evSahibi: false, tarih: '20.09.2026', stad: 'Papara Park', goller: '-' },
+        { id: 11, lig: 'Süper Lig', rakip: 'Kasımpaşa', evSahibi: true, tarih: '11.10.2026', stad: 'RAMS Park', goller: '-' },
+        { id: 12, lig: 'Süper Lig', rakip: 'Gençlerbirliği', evSahibi: false, tarih: '18.10.2026', stad: 'Eryaman Stadı', goller: '-' },
+        { id: 13, lig: 'Süper Lig', rakip: 'Fenerbahçe', evSahibi: true, tarih: '25.10.2026', stad: 'RAMS Park', goller: '-' },
+        { id: 14, lig: 'Süper Lig', rakip: 'Konyaspor', evSahibi: false, tarih: '01.11.2026', stad: 'Konya Büyükşehir Belediye Stadı', goller: '-' },
+        { id: 15, lig: 'Süper Lig', rakip: 'Amed SK', evSahibi: true, tarih: '08.11.2026', stad: 'RAMS Park', goller: '-' },
+        { id: 16, lig: 'Süper Lig', rakip: 'Samsunspor', evSahibi: true, tarih: '22.11.2026', stad: 'RAMS Park', goller: '-' },
+        { id: 17, lig: 'Süper Lig', rakip: 'Beşiktaş', evSahibi: false, tarih: '29.11.2026', stad: 'Tüpraş Park', goller: '-' },
+        { id: 18, lig: 'Süper Lig', rakip: 'Çaykur Rizespor', evSahibi: true, tarih: '06.12.2026', stad: 'RAMS Park', goller: '-' },
+        { id: 19, lig: 'Süper Lig', rakip: 'Eyüpspor', evSahibi: false, tarih: '13.12.2026', stad: 'Eyüp Stadı', goller: '-' },
+        { id: 20, lig: 'Süper Lig', rakip: 'Alanyaspor', evSahibi: true, tarih: '20.12.2026', stad: 'RAMS Park', goller: '-' },
+        { id: 21, lig: 'Süper Lig', rakip: 'Gaziantep FK', evSahibi: false, tarih: '17.01.2027', stad: 'Gaziantep Büyükşehir Belediye Stadı', goller: '-' },
+        { id: 22, lig: 'Süper Lig', rakip: 'Çorum FK', evSahibi: false, tarih: '24.01.2027', stad: 'Çorum Şehir Stadı', goller: '-' },
+        { id: 23, lig: 'Süper Lig', rakip: 'Erzurumspor FK', evSahibi: true, tarih: '31.01.2027', stad: 'RAMS Park', goller: '-' },
+        { id: 24, lig: 'Süper Lig', rakip: 'Göztepe', evSahibi: false, tarih: '07.02.2027', stad: 'Gürsel Aksel Stadı', goller: '-' },
+        { id: 25, lig: 'Süper Lig', rakip: 'Başakşehir', evSahibi: true, tarih: '14.02.2027', stad: 'RAMS Park', goller: '-' },
+        { id: 26, lig: 'Süper Lig', rakip: 'Kocaelispor', evSahibi: false, tarih: '21.02.2027', stad: 'Kocaeli Stadı', goller: '-' },
+        { id: 27, lig: 'Süper Lig', rakip: 'Trabzonspor', evSahibi: true, tarih: '28.02.2027', stad: 'RAMS Park', goller: '-' },
+        { id: 28, lig: 'Süper Lig', rakip: 'Kasımpaşa', evSahibi: false, tarih: '07.03.2027', stad: 'Kasımpaşa Stadı', goller: '-' },
+        { id: 29, lig: 'Süper Lig', rakip: 'Gençlerbirliği', evSahibi: true, tarih: '14.03.2027', stad: 'RAMS Park', goller: '-' },
+        { id: 30, lig: 'Süper Lig', rakip: 'Fenerbahçe', evSahibi: false, tarih: '21.03.2027', stad: 'Chobani Stadyumu', goller: '-' },
+        { id: 31, lig: 'Süper Lig', rakip: 'Konyaspor', evSahibi: true, tarih: '04.04.2027', stad: 'RAMS Park', goller: '-' },
+        { id: 32, lig: 'Süper Lig', rakip: 'Amed SK', evSahibi: false, tarih: '11.04.2027', stad: 'Diyarbakır Stadı', goller: '-' },
+        { id: 33, lig: 'Süper Lig', rakip: 'Samsunspor', evSahibi: false, tarih: '18.04.2027', stad: 'Samsun 19 Mayıs Stadı', goller: '-' },
+        { id: 34, lig: 'Süper Lig', rakip: 'Beşiktaş', evSahibi: true, tarih: '25.04.2027', stad: 'RAMS Park', goller: '-' },
+        { id: 35, lig: 'Süper Lig', rakip: 'Çaykur Rizespor', evSahibi: false, tarih: '02.05.2027', stad: 'Çaykur Didi Stadı', goller: '-' },
+        { id: 36, lig: 'Süper Lig', rakip: 'Eyüpspor', evSahibi: true, tarih: '09.05.2027', stad: 'RAMS Park', goller: '-' },
+        { id: 37, lig: 'Süper Lig', rakip: 'Alanyaspor', evSahibi: false, tarih: '15.05.2027', stad: 'Alanya Oba Stadı', goller: '-' },
+        { id: 38, lig: 'Süper Lig', rakip: 'Gaziantep FK', evSahibi: true, tarih: '23.05.2027', stad: 'RAMS Park', goller: '-' }
     ];
 
     function renderList(filter, btn) {
@@ -115,7 +116,7 @@
             <div class="match-title">${m.evSahibi ? 'Galatasaray - ' + m.rakip : m.rakip + ' - Galatasaray'}</div>
             <div class="stat-card">
                 <div><div style="color:#a0a0a0; font-size:0.7rem">Tarih</div>${m.tarih}</div>
-                <div><div style="color:#a0a0a0; font-size:0.7rem">Saat</div>20:00</div>
+                <div><div style="color:#a0a0a0; font-size:0.7rem">Saat</div>21:00</div>
                 <div><div style="color:#a0a0a0; font-size:0.7rem">Stadyum</div>${m.stad}</div>
                 <div><div style="color:#a0a0a0; font-size:0.7rem">Goller</div>${m.goller}</div>
             </div>`;
