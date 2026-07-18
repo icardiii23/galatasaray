@@ -123,30 +123,30 @@
         `).join('');
     }
 function showDetail(id) {
-    const m = matches.find(x => x.id === id);
-    document.getElementById('detail-view').innerHTML = `
-        <button onclick="goBack()" style="background:none; border:none; color:white; margin-bottom:20px; font-size:1rem; cursor:pointer;">← Geri Dön</button>
-        <div class="match-title">
-            ${m.skor ? (m.evSahibi ? 'Galatasaray ' + m.skor + ' ' + m.rakip : m.rakip + ' ' + m.skor + ' Galatasaray') : (m.evSahibi ? 'Galatasaray - ' + m.rakip : m.rakip + ' - Galatasaray')}
-        </div>
-        <div class="stat-card" style="display: flex; flex-direction: column; gap: 15px; text-align: left;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div><div style="color:#a0a0a0; font-size:0.7rem">Tarih</div>${m.tarih}</div>
-                <div><div style="color:#a0a0a0; font-size:0.7rem">Saat</div>${m.saat || '-'}</div> <!-- BURAYI DEĞİŞTİRDİK -->
-                <div><div style="color:#a0a0a0; font-size:0.7rem">Stadyum</div>${m.stad}</div>
-                <div><div style="color:#a0a0a0; font-size:0.7rem">Goller</div>${m.goller || '-'}</div>
+        const m = matches.find(x => x.id === id);
+        document.getElementById('detail-view').innerHTML = `
+            <button onclick="goBack()" style="background:none; border:none; color:white; margin-bottom:20px; font-size:1rem; cursor:pointer;">← Geri Dön</button>
+            <div class="match-title">
+                ${m.skor ? (m.evSahibi ? 'Galatasaray ' + m.skor + ' ' + m.rakip : m.rakip + ' ' + m.skor + ' Galatasaray') : (m.evSahibi ? 'Galatasaray - ' + m.rakip : m.rakip + ' - Galatasaray')}
             </div>
-            <div style="border-top: 1px solid #333; padding-top: 15px;">
-                <div style="color:#ffc107; font-size:0.8rem; font-weight:700; margin-bottom:5px;">İLK 11</div>
-                <div style="font-size:0.9rem;">${m.ilk11 || 'Henüz açıklanmadı'}</div>
-            </div>
-            <div>
-                <div style="color:#ffc107; font-size:0.8rem; font-weight:700; margin-bottom:5px;">YEDEKLER</div>
-                <div style="font-size:0.9rem;">${m.yedekler || 'Henüz açıklanmadı'}</div>
-            </div>
-        </div>`;
-    // ... geri kalan kod aynı
-}
+            <div class="stat-card" style="display: flex; flex-direction: column; gap: 15px; text-align: left;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div><div style="color:#a0a0a0; font-size:0.7rem">Tarih</div>${m.tarih}</div>
+                    <div><div style="color:#a0a0a0; font-size:0.7rem">Saat</div>${m.saat || '-'}</div>
+                    <div><div style="color:#a0a0a0; font-size:0.7rem">Stadyum</div>${m.stad}</div>
+                    <div><div style="color:#a0a0a0; font-size:0.7rem">Goller</div>${m.goller || '-'}</div>
+                </div>
+                <div style="border-top: 1px solid #333; padding-top: 15px;">
+                    <div style="color:#ffc107; font-size:0.8rem; font-weight:700; margin-bottom:5px;">İLK 11</div>
+                    <div style="font-size:0.9rem;">${m.ilk11 || 'Henüz açıklanmadı'}</div>
+                </div>
+                <div>
+                    <div style="color:#ffc107; font-size:0.8rem; font-weight:700; margin-bottom:5px;">YEDEKLER</div>
+                    <div style="font-size:0.9rem;">${m.yedekler || 'Henüz açıklanmadı'}</div>
+                </div>
+            </div>`;
+
+        // Mobil cihazlarda detay görünümü açıldığında sidebar'ı gizle
         if (window.innerWidth <= 768) {
             document.querySelector('.sidebar').classList.add('hidden');
             document.querySelector('.content').classList.add('full-screen');
