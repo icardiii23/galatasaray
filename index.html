@@ -63,7 +63,8 @@
             saat: '21:00',
             goller: '35\' Ada Yüzgeç, 42\' Kazımcan Karataş, 60\' Can Armando Güner, 62\' Berat Luş, 70\' Arda Tagay',
             ilk11: 'Jankat, Kazımcan, Eyüp, Arda Ünyay, Ali Turap, Nhaga, İlkay, Sara, Berat, Can Armando, Ada Yüzgeç', 
-            yedekler: 'Cem Efe, Arda Yılmaz, Ugochukwu, Torreira, Arda Tagay, Yusuf Sivaslıoğlu, Necati, Yalın, Dağhan, Eyüp Can, Furkan Koçak, Berat Yılmaz' 
+            yedekler: 'Cem Efe, Arda Yılmaz, Ugochukwu, Torreira, Arda Tagay, Yusuf Sivaslıoğlu, Necati, Yalın, Dağhan, Eyüp Can, Furkan Koçak, Berat Yılmaz',
+            videoDosyasi: 'mac_1.mp4' 
         },
         { id: 2, lig: 'Hazırlık', rakip: 'AC Monza', evSahibi: false, tarih: '24 Temmuz 2026', stad: 'Raiffeisen Arena', saat: '21:00', skor: '', goller: '' },
         { id: 3, lig: 'Hazırlık', rakip: 'Venezia', evSahibi: false, tarih: '27 Temmuz 2026', stad: 'Hofmann Personal Stadion', saat: '21:00', skor: '', goller: '' },
@@ -123,7 +124,8 @@
             </div>
         `).join('');
     }
-function showDetail(id) {
+
+    function showDetail(id) {
         const m = matches.find(x => x.id === id);
         document.getElementById('detail-view').innerHTML = `
             <button onclick="goBack()" style="background:none; border:none; color:white; margin-bottom:20px; font-size:1rem; cursor:pointer;">← Geri Dön</button>
@@ -145,9 +147,17 @@ function showDetail(id) {
                     <div style="color:#ffc107; font-size:0.8rem; font-weight:700; margin-bottom:5px;">YEDEKLER</div>
                     <div style="font-size:0.9rem;">${m.yedekler || 'Henüz açıklanmadı'}</div>
                 </div>
+                <div>
+                    <div style="color:#ffc107; font-size:0.8rem; font-weight:700; margin-bottom:10px; border-top: 1px solid #333; padding-top: 15px;">MAÇ ÖZETİ</div>
+                    ${m.videoDosyasi ? `
+                        <video width="100%" controls style="border-radius:10px;">
+                            <source src="${m.videoDosyasi}" type="video/mp4">
+                            Tarayıcınız video oynatmayı desteklemiyor.
+                        </video>
+                    ` : '<div style="font-size:0.9rem;">Özet videosu henüz eklenmedi.</div>'}
+                </div>
             </div>`;
 
-        // Mobil cihazlarda detay görünümü açıldığında sidebar'ı gizle
         if (window.innerWidth <= 768) {
             document.querySelector('.sidebar').classList.add('hidden');
             document.querySelector('.content').classList.add('full-screen');
