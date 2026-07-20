@@ -64,7 +64,7 @@
             goller: '35\' Ada Yüzgeç, 42\' Kazımcan Karataş, 60\' Can Armando Güner, 62\' Berat Luş, 70\' Arda Tagay',
             ilk11: 'Jankat, Kazımcan, Eyüp, Arda Ünyay, Ali Turap, Nhaga, İlkay, Sara, Berat, Can Armando, Ada Yüzgeç', 
             yedekler: 'Cem Efe, Arda Yılmaz, Ugochukwu, Torreira, Arda Tagay, Yusuf Sivaslıoğlu, Necati, Yalın, Dağhan, Eyüp Can, Furkan Koçak, Berat Yılmaz',
-            videoDosyasi: 'mac_1.mp4' 
+            videoLink: 'https://www.youtube.com/embed/rBCOV35rJjo?si=A9hY7ruv-9nvh-F4' 
         },
         { id: 2, lig: 'Hazırlık', rakip: 'AC Monza', evSahibi: false, tarih: '24 Temmuz 2026', stad: 'Raiffeisen Arena', saat: '21:00', skor: '', goller: '' },
         { id: 3, lig: 'Hazırlık', rakip: 'Venezia', evSahibi: false, tarih: '27 Temmuz 2026', stad: 'Hofmann Personal Stadion', saat: '21:00', skor: '', goller: '' },
@@ -149,11 +149,11 @@
                 </div>
                 <div>
                     <div style="color:#ffc107; font-size:0.8rem; font-weight:700; margin-bottom:10px; border-top: 1px solid #333; padding-top: 15px;">MAÇ ÖZETİ</div>
-                    ${m.videoDosyasi ? `
-                        <video width="100%" controls style="border-radius:10px;">
-                            <source src="${m.videoDosyasi}" type="video/mp4">
-                            Tarayıcınız video oynatmayı desteklemiyor.
-                        </video>
+                    ${m.videoLink ? `
+                        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px;">
+                            <iframe style="position:absolute; top:0; left:0; width:100%; height:100%;" 
+                            src="${m.videoLink}" frameborder="0" allowfullscreen></iframe>
+                        </div>
                     ` : '<div style="font-size:0.9rem;">Özet videosu henüz eklenmedi.</div>'}
                 </div>
             </div>`;
