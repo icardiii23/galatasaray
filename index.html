@@ -9,7 +9,7 @@
         :root { --gs-red: #d32f2f; --gs-gold: #ffc107; --bg-dark: #0a0a0c; --glass: rgba(255, 255, 255, 0.05); --text-main: #ffffff; --text-dim: #a0a0a0; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-dark); color: var(--text-main); margin: 0; display: flex; height: 100vh; overflow: hidden; }
         .sidebar { width: 360px; background: rgba(15, 15, 18, 0.95); border-right: 1px solid #222; display: flex; flex-direction: column; }
-        .content { flex: 1; padding: 60px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1a1a1e 0%, #0a0a0c 100%); overflow-y: auto; }
+        .content { flex: 1; padding: 40px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1a1a1e 0%, #0a0a0c 100%); overflow: hidden; }
         .top-nav { display: flex; border-bottom: 1px solid #222; }
         .nav-btn { flex: 1; padding: 15px; border: none; background: #1a1a1e; color: #777; cursor: pointer; font-weight: 700; }
         .nav-btn.active { background: #0a0a0c; color: var(--gs-gold); }
@@ -19,15 +19,16 @@
         .match-list { flex: 1; overflow-y: auto; padding: 15px; }
         .match-card { background: var(--glass); padding: 15px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; gap: 12px; }
         .match-card:hover { border-color: var(--gs-gold); border-style: solid; border-width: 1px; }
-        .match-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 25px; }
-        .stat-card { background: var(--glass); padding: 25px; border-radius: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; }
+        .match-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; flex-shrink: 0; }
+        .stat-card { background: var(--glass); padding: 25px; border-radius: 20px; display: flex; flex-direction: column; gap: 15px; text-align: left; overflow-y: auto; max-height: calc(100vh - 180px); }
 
         @media (max-width: 768px) {
             body { flex-direction: column; overflow-y: auto; }
             .sidebar { width: 100% !important; height: auto !important; border-right: none !important; }
-            .content { padding: 20px !important; }
+            .content { padding: 20px !important; overflow-y: auto !important; }
             .sidebar.hidden { display: none !important; }
-            .content.full-screen { display: flex !important; width: 100% !important; height: 100vh !important; position: fixed; top: 0; left: 0; background: var(--bg-dark) !important; padding: 40px 20px !important; z-index: 100; }
+            .content.full-screen { display: flex !important; width: 100% !important; height: 100vh !important; position: fixed; top: 0; left: 0; background: var(--bg-dark) !important; padding: 20px !important; z-index: 100; overflow-y: auto !important; }
+            .stat-card { max-height: none !important; overflow-y: visible !important; }
         }
     </style>
 </head>
@@ -128,33 +129,35 @@
     function showDetail(id) {
         const m = matches.find(x => x.id === id);
         document.getElementById('detail-view').innerHTML = `
-            <button onclick="goBack()" style="background:none; border:none; color:white; margin-bottom:20px; font-size:1rem; cursor:pointer;">← Geri Dön</button>
-            <div class="match-title">
-                ${m.skor ? (m.evSahibi ? 'Galatasaray ' + m.skor + ' ' + m.rakip : m.rakip + ' ' + m.skor + ' Galatasaray') : (m.evSahibi ? 'Galatasaray - ' + m.rakip : m.rakip + ' - Galatasaray')}
-            </div>
-            <div class="stat-card" style="display: flex; flex-direction: column; gap: 15px; text-align: left;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div><div style="color:#a0a0a0; font-size:0.7rem">Tarih</div>${m.tarih}</div>
-                    <div><div style="color:#a0a0a0; font-size:0.7rem">Saat</div>${m.saat || '-'}</div>
-                    <div><div style="color:#a0a0a0; font-size:0.7rem">Stadyum</div>${m.stad}</div>
-                    <div><div style="color:#a0a0a0; font-size:0.7rem">Goller</div>${m.goller || '-'}</div>
+            <div style="text-align: left; display: flex; flex-direction: column; height: 100%;">
+                <button onclick="goBack()" style="background:none; border:none; color:white; margin-bottom:15px; font-size:1rem; cursor:pointer; padding:0; flex-shrink:0;">← Geri Dön</button>
+                <div class="match-title">
+                    ${m.skor ? (m.evSahibi ? 'Galatasaray ' + m.skor + ' ' + m.rakip : m.rakip + ' ' + m.skor + ' Galatasaray') : (m.evSahibi ? 'Galatasaray - ' + m.rakip : m.rakip + ' - Galatasaray')}
                 </div>
-                <div style="border-top: 1px solid #333; padding-top: 15px;">
-                    <div style="color:#ffc107; font-size:0.8rem; font-weight:700; margin-bottom:5px;">İLK 11</div>
-                    <div style="font-size:0.9rem;">${m.ilk11 || 'Henüz açıklanmadı'}</div>
-                </div>
-                <div>
-                    <div style="color:#ffc107; font-size:0.8rem; font-weight:700; margin-bottom:5px;">YEDEKLER</div>
-                    <div style="font-size:0.9rem;">${m.yedekler || 'Henüz açıklanmadı'}</div>
-                </div>
-                <div>
-                    <div style="color:#ffc107; font-size:0.8rem; font-weight:700; margin-bottom:10px; border-top: 1px solid #333; padding-top: 15px;">MAÇ ÖZETİ</div>
-                    ${m.videoLink ? `
-                        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px;">
-                            <iframe style="position:absolute; top:0; left:0; width:100%; height:100%;" 
-                            src="${m.videoLink}" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    ` : '<div style="font-size:0.9rem;">Özet videosu henüz eklenmedi.</div>'}
+                <div class="stat-card">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div><div style="color:#a0a0a0; font-size:0.7rem">Tarih</div>${m.tarih}</div>
+                        <div><div style="color:#a0a0a0; font-size:0.7rem">Saat</div>${m.saat || '-'}</div>
+                        <div><div style="color:#a0a0a0; font-size:0.7rem">Stadyum</div>${m.stad}</div>
+                        <div><div style="color:#a0a0a0; font-size:0.7rem">Goller</div>${m.goller || '-'}</div>
+                    </div>
+                    <div style="border-top: 1px solid #333; padding-top: 15px;">
+                        <div style="color:#ffc107; font-size:0.8rem; font-weight:700; margin-bottom:5px;">İLK 11</div>
+                        <div style="font-size:0.9rem;">${m.ilk11 || 'Henüz açıklanmadı'}</div>
+                    </div>
+                    <div>
+                        <div style="color:#ffc107; font-size:0.8rem; font-weight:700; margin-bottom:5px;">YEDEKLER</div>
+                        <div style="font-size:0.9rem;">${m.yedekler || 'Henüz açıklanmadı'}</div>
+                    </div>
+                    <div>
+                        <div style="color:#ffc107; font-size:0.8rem; font-weight:700; margin-bottom:10px; border-top: 1px solid #333; padding-top: 15px;">MAÇ ÖZETİ</div>
+                        ${m.videoLink ? `
+                            <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px;">
+                                <iframe style="position:absolute; top:0; left:0; width:100%; height:100%;" 
+                                src="${m.videoLink}" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        ` : '<div style="font-size:0.9rem;">Özet videosu henüz eklenmedi.</div>'}
+                    </div>
                 </div>
             </div>`;
 
